@@ -33,7 +33,7 @@ simOptions.dsOrder    = 1;
 simOptions.goal       = [0; 0];
 simOptions.plotResult = false;
 
-PLOT_ON = 1; % 1 - plot generated trajectory.
+PLOT_ON = 1; % 1 - plot retrieved trajectory.
 
 %% Learning loop
 eldsTrainingTime = zeros(1,26);
@@ -62,7 +62,7 @@ for modIt=3:26
         % Estimate dissipated energy in worst case (alpha = 0 && beta = 1)
         tic;
         vTildeD = vCurr + xCurr;
-        kappa = 1-exp(-0.01*((dot(xCurr,xCurr)))); % class K function
+        kappa = 1-exp(-0.1*((dot(xCurr,xCurr)))); % class K function
         sDotDemo = -simOptions.dt.*dot(xCurr,vTildeD);
         totEnergy(demoIt) = sum(sDotDemo(sDotDemo<0));
         timeData = timeData + toc;
@@ -97,7 +97,7 @@ for modIt=3:26
             tmpRMSE(nbStates-3, demoIt) = velocity_rmse(DSHandle, demoX, demoV, simOptions.dt, simOptions.sMax);
         end
         
-        %% Plot generated trajectories
+        %% Plot ge
         if(PLOT_ON)
             scatter(xDemo(1,:),xDemo(2,:),[],[217,83,25]./255)
             hold on;

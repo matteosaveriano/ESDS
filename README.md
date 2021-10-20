@@ -28,5 +28,7 @@ Third-party code and dataset have been included in this repository for convenien
 
 - *GMR library*: please acknowledge the authors in any academic publications that have made use of the GMR library by citing: *S. Calinon et al., "On Learning, Representing and Generalizing a Task in a Humanoid Robot", IEEE Transactions on Systems, Man and Cybernetics, Part B., 2006*.
 
+- *Energy-Tank*: The energy tank-based stabilization re-uses part of the code of the approach described in: *K. Kronander and A. Billard, "Passive Interaction Control with Dynamical Systems", RA-L, 2017*.
+
 ## Note
 This source code is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY.

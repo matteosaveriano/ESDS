@@ -36,7 +36,7 @@ simOptions.plotResult = false;
 PLOT_ON = 1; % 1 - plot generated trajectory.
 
 %% Learning loop
-eldsTrainingTime = zeros(1,26);
+esdsTrainingTime = zeros(1,26);
 for modIt=3:26
     %% Load LASA motion and resample
     [demos, dt]   = load_LASA_models('', modIt);
@@ -115,7 +115,7 @@ for modIt=3:26
     [val, ind] = min(meanSEA);
     allSEA(modIt,:) = tmpSEA(ind, :);
     allVRMSE(modIt,:) = tmpRMSE(ind, :);
-    eldsTrainingTime(modIt) = tmpTraining(ind) + timeData;
+    esdsTrainingTime(modIt) = tmpTraining(ind) + timeData;
 end
 
 %% Get global results

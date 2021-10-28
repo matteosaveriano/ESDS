@@ -10,8 +10,8 @@ function [pos, vel, out_] = simulate_ESDS(DSHandle, x0, simOptions)
         else
             params.s_max = 0.5*dot(xCurr, xCurr);
         end
-        params.ds = 0.1 * params.s_max;
-        params.dz = 0.01;
+        params.ds = 0.1*params.s_max;
+        params.dz = 0.01 *;
         sOld = params.s_max;
         
 
@@ -40,7 +40,7 @@ function [pos, vel, out_] = simulate_ESDS(DSHandle, x0, simOptions)
             params.s_max = (1-exp(-simOptions.a*dot(xCurr,xCurr)))*simOptions.sMax;
             
             % Scale velocity           
-            dx = dxLin + gamma * dxNonLin;
+            dx = dxLin + gamma*dxNonLin;
             
             % Compute next position
             xCurr = xCurr + dx*simOptions.dt;
@@ -58,8 +58,8 @@ function [pos, vel, out_] = simulate_ESDS(DSHandle, x0, simOptions)
         if(simOptions.plotResult)
             figure(1);
             hold on;
-            plot(out_{demoIt}.x(1,1:1:end), out_{demoIt}.x(2,1:1:end), 'k','Linewidth', 3)
-            plot(out_{demoIt}.x(1,end), out_{demoIt}.x(2,end), 'k.','Linewidth', 2,'MarkerSize', 50)
+            plot(out_.x(1,1:1:end), out_.x(2,1:1:end), 'k','Linewidth', 3)
+            plot(out_.x(1,end), out_.x(2,end), 'k.','Linewidth', 2,'MarkerSize', 50)
         end
         
         out_{demoIt}.xd(:,end+1) = zeros(spaceDim,1); % Add null velocity for consistency

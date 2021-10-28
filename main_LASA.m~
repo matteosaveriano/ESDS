@@ -24,14 +24,14 @@ addpath(genpath('LASA_dataset'));
 addpath(genpath('lib'));
 
 % Parameters
-spaceScale = 100; % Data in the dataset are in 'cm'. Use this to scale differently
+spaceScale = 1; % Data in the dataset are in 'cm'. Use this to scale differently
 demoNum = [1 2 3]; % Use only first 3 demos
 samplingRate = 10; % Resample to speed-up
 
 simOptions.s          = spaceScale;
 % simOptions.a -> Coefficient of the class K function.
-% simOptions.a = 0.1 or 0.01 work well with data in 'cm', i.e. spaceScale=1
-simOptions.a          = 0.01; % 
+% simOptions.a = 0.1 or 0.01 work well with data in 'cm'.
+simOptions.a          = 0.1 / spaceScale; % 
 simOptions.iterNum    = 1000;
 simOptions.tol        = spaceScale * 0.1; % 1 mm
 simOptions.dsOrder    = 1; 
@@ -68,10 +68,10 @@ for modIt=1:26
         
         x0(:,demoIt) = demos{demoIt}.pos(:,1);
         
-        %% Compute variable 'a' gain to have u = 0.1 * spaceScale after 'end-P' steps
+        %% Compute variable 'a' gain to have u = 0.1 * spaceScale after 'end-P' stepa
         %  Note: This is used to consider data in different units (cm, mm, ...)
         %        and it is not contained in the original paper where we set
-        %        simOptions.a = 0.01.
+        simOptions.a = 0.01.
         P = 5;
         xx = xCurr(:,end-P);
         dxx = xdDemo(:,end-P);
